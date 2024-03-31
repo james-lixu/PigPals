@@ -10,6 +10,8 @@ export default {
       'mono-red': '#EC7474',
       'off-white': '#F5F5F5',
       'brown': '#975715',
+      'blue': '#2C29BB',
+      'dark-blue': '#1B1A54',
     },
     
     extend: {
