@@ -49,7 +49,7 @@ const LoginPage = () => {
               </div>
               <button
                 type="submit"
-                className="bg-light-pink text-black p-2.5 rounded-3xl w-1/2 ml-24 font-bold"
+                className="bg-light-pink text-off-white p-2.5 rounded-3xl w-1/2 ml-24 font-semibold hover:bg-mono-red"
               >
                 Login
               </button>
