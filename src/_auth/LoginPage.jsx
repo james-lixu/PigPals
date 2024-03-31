@@ -6,12 +6,9 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="h-20 flex items-center justify-center">
-        <h1
-          className="font-outfit text-5xl text-light-pink pl-2 border-b-2 border-light-pink"
-          style={{ paddingBottom: "0.4rem", width: "calc(100% - 4rem)" }}
-        >
-          PigPals
-        </h1>
+      <Link to="/" className="font-outfit text-5xl text-light-pink pl-2 border-b-2 border-light-pink" style={{ paddingBottom: "0.4rem", width: "calc(100% - 4rem)" }}>
+        PigPals
+      </Link>
       </div>
       <div className="flex flex-col max-h-screen items-center justify-center pt-24">
         <div className="flex items-center">
@@ -33,7 +30,7 @@ const LoginPage = () => {
                   type="email"
                   id="email"
                   name="email"
-                  className="mt-1 p-2 w-full border border-light-pink rounded-3xl font-semibold"
+                  className="mt-1 p-2 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
                 />
               </div>
               <div className="mb-6">
@@ -47,7 +44,7 @@ const LoginPage = () => {
                   type="password"
                   id="password"
                   name="password"
-                  className="mt-1 p-2 w-full border border-light-pink rounded-3xl font-semibold"
+                  className="mt-1 p-2 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
                 />
               </div>
               <button
