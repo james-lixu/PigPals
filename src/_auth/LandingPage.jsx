@@ -16,11 +16,11 @@ const LandingPage = () => {
           PigPals
         </h1>
       </div>
-      <div className="flex-1 flex flex-col items-center justify-center px-8 text-center">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 text-center">
         <img
           src={TwoSittingPigs}
           alt="Two cute pigs sitting down"
-          className="max-w-xs w-full mb-8"
+          className="max-w-xs w-full"
         />
         <h1 className="text-3xl font-bold mb-6">Welcome to PigPals!</h1>
         <p className="mb-4">
