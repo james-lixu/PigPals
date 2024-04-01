@@ -30,7 +30,7 @@ const LoginPage = () => {
                   type="email"
                   id="email"
                   name="email"
-                  className="mt-1 p-2 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
+                  className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
                 />
               </div>
               <div className="mb-6">
@@ -44,7 +44,7 @@ const LoginPage = () => {
                   type="password"
                   id="password"
                   name="password"
-                  className="mt-1 p-2 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
+                  className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
                 />
               </div>
               <button
