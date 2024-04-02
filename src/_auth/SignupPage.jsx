@@ -1,14 +1,76 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import PigPalLogo from "../assets/pigpallogo.png";
 
-const LoginPage = () => {
+const SignupPage = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (user.password !== user.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    try {
+      const response = await fetch("/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: user.username,
+          email: user.email,
+          password: user.password,
+        }),
+      });
+
+      if (!response.ok) {
+        const message = await response.text(); // Fallback if JSON parsing fails
+        throw new Error(`Error: ${response.status}, ${message}`);
+      }
+
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+      console.log(data);
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        const result = await response.json();
+        console.log(result);
+        navigate("/home");
+      } else {
+        console.log("No JSON content!");
+        navigate("/home"); // Adjust based on your needs
+      }
+    } catch (error) {
+      console.error("Failed to register user:", error);
+    }
+  };
   return (
     <div className="flex flex-col max-h-screen">
       <div className="h- flex items-center justify-center">
-      <Link to="/" className="font-outfit text-5xl text-light-pink pl-2 border-b-2 border-light-pink" style={{ paddingBottom: "0.4rem", width: "calc(100% - 4rem)" }}>
-        PigPals
-      </Link>
+        <Link
+          to="/"
+          className="font-outfit text-5xl text-light-pink pl-2 border-b-2 border-light-pink"
+          style={{ paddingBottom: "0.4rem", width: "calc(100% - 4rem)" }}
+        >
+          PigPals
+        </Link>
       </div>
       <div className="flex flex-col max-h-screen items-center justify-center pt-8">
         <div className="flex items-center">
@@ -18,55 +80,67 @@ const LoginPage = () => {
             <h2 className="text-2xl mb-4 text-light-pink font-outfit font-semibold">
               Sign up
             </h2>
-            <form className="w-96">
-              <div className="mb-4">
-                <label
-                  htmlFor="username"
-                  className="block text-sm text-light-pink font-outfit font-semibold"
-                >
-                  Username
-                </label>
-                <input
-                  type="username"
-                  id="username"
-                  name="username"
-                  className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="username"
-                  className="block text-sm text-light-pink font-outfit font-semibold"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
-                />
-              </div>
-              <div className="mb-6">
-                <label
-                  htmlFor="password"
-                  className="block text-sm text-light-pink font-outfit font-semibold"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"
-                />
-              </div>
-              <div className="mb-6">
-                <label htmlFor="confirm-password" className="block text-sm text-light-pink font-outfit font-semibold">
-                  Confirm Password
-                </label>
-                <input type="password" id="confirm-password" name="confirm-password" className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink"/>
-              </div>
+            <form className="w-96" onSubmit={handleSubmit}>
+              <label
+                htmlFor="username"
+                className="block text-sm text-light-pink font-outfit font-semibold"
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+                className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink mb-4"
+              />
+              {/* Email input */}
+              <label
+                htmlFor="email"
+                className="block text-sm text-light-pink font-outfit font-semibold"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
+                className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink mb-4"
+              />
+              {/* Password input */}
+              <label
+                htmlFor="password"
+                className="block text-sm text-light-pink font-outfit font-semibold"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+                className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink mb-4"
+              />
+              {/* Confirm Password input */}
+              <label
+                htmlFor="confirm-password"
+                className="block text-sm text-light-pink font-outfit font-semibold"
+              >
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirmPassword"
+                value={user.confirmPassword}
+                onChange={handleChange}
+                className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink mb-4"
+              />
+              {/* Submit button */}
               <button
                 type="submit"
                 className="bg-light-pink text-off-white p-2.5 rounded-3xl w-1/2 ml-24 font-semibold hover:bg-mono-red"
@@ -87,4 +161,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

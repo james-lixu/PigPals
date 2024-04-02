@@ -1,13 +1,11 @@
-import './App.css'
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from './_auth/LandingPage'
-import LoginPage from './_auth/LoginPage';
-import SignupPage from './_auth/SignupPage';
-import HomePage from './_root/HomePage';
-
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./_auth/LandingPage";
+import LoginPage from "./_auth/LoginPage";
+import SignupPage from "./_auth/SignupPage";
+import HomePage from "./_root/HomePage";
 
 function App() {
-
   return (
     <Router>
       <Routes>
@@ -20,4 +18,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

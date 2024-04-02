@@ -1,14 +1,23 @@
 import express from "express";
-import cors from "cors";
-import records from "./routes/record.js";
+import mongoose from "mongoose";
+import "dotenv/config";
+import UserRouter from "../server/routes/UserRouter.js";
 
-const PORT = process.env.PORT || 5050;
+const uri =
+  "mongodb+srv://Jimmy:neutron@pigpals.8xnlnkd.mongodb.net/?retryWrites=true&w=majority&appName=PigPals";
+
+mongoose.connect(uri).then(() => console.log("MongoDB connection established"));
+
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.use(cors());
 app.use(express.json());
-app.use("/record", records);
+app.use("/users", UserRouter);
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
