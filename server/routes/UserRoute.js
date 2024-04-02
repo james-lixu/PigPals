@@ -1,9 +1,9 @@
 // routes/userRoutes.js
 import express from "express";
-import User from "../models/User.js";
+import Users from "../models/Users.js";
 
-const UserRouter = express.Router();
-UserRouter.post("/register", async (req, res) => {
+const UserRoute = express.Router();
+UserRoute.post("/", async (req, res) => {
   try {
     const user = new User(req.body);
     const savedUser = await user.save();
@@ -14,7 +14,7 @@ UserRouter.post("/register", async (req, res) => {
   }
 });
 
-UserRouter.get("/", async (req, res) => {
+UserRoute.get("/", async (req, res) => {
   try {
     const users = await User.find({});
     res.status(200).send(users);
@@ -23,4 +23,4 @@ UserRouter.get("/", async (req, res) => {
   }
 });
 
-export default UserRouter;
+export default UserRoute;
