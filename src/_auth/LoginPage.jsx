@@ -30,18 +30,15 @@ const LoginPage = () => {
       console.log(`Response status: ${response.status}`);
 
       if (!response.ok) {
-        // Assuming all error responses are in JSON format.
         const errorBody = await response.json();
         console.error("Login failed:", errorBody);
         alert(`Login failed: ${errorBody.message || "Unknown error"}`);
         return;
       }
 
-      // Assuming a successful response is also in JSON format.
       const data = await response.json();
       console.log("Login successful:", data);
 
-      // Navigate to "/home" upon successful login.
       navigate("/home");
     } catch (error) {
       console.error("Network error or CORS issue on login request:", error);
