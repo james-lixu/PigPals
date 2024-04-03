@@ -4,7 +4,7 @@ import userRoute from "./routes/UserRoute.js";
 import cors from "cors";
 
 const uri =
-  "mongodb+srv://Jimmy:neutron@pigpals.8xnlnkd.mongodb.net/?retryWrites=true&w=majority&appName=PigPals";
+  "mongodb+srv://Jimmy:neutron@pigpals.8xnlnkd.mongodb.net/PigPals?retryWrites=true&w=majority&appName=PigPals";
 const PORT = process.env.PORT || 5000;
 const app = express();
 

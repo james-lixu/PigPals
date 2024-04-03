@@ -5,7 +5,7 @@ import Users from "../models/Users.js";
 const UserRoute = express.Router();
 UserRoute.post("/", async (req, res) => {
   try {
-    const user = new User(req.body);
+    const user = new Users(req.body);
     const savedUser = await user.save();
     res.status(201).send({ user: savedUser });
   } catch (error) {

@@ -22,8 +22,9 @@ const SignupPage = () => {
       alert("Passwords do not match");
       return;
     }
+
     try {
-      const response = await fetch("/users/register", {
+      const response = await fetch("http://localhost:5000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,31 +35,17 @@ const SignupPage = () => {
           password: user.password,
         }),
       });
-
       if (!response.ok) {
-        const message = await response.text(); // Fallback if JSON parsing fails
+        const message = await response.text();
         throw new Error(`Error: ${response.status}, ${message}`);
       }
-
-      let data = {};
-      try {
-        data = await response.json();
-      } catch (error) {
-        console.error("Error parsing JSON:", error);
-      }
+      const data = await response.json();
       console.log(data);
 
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.indexOf("application/json") !== -1) {
-        const result = await response.json();
-        console.log(result);
-        navigate("/home");
-      } else {
-        console.log("No JSON content!");
-        navigate("/home"); // Adjust based on your needs
-      }
+      navigate("/home");
     } catch (error) {
       console.error("Failed to register user:", error);
+      alert("Failed to register. Please try again.");
     }
   };
   return (
