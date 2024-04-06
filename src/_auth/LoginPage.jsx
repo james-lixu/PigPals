@@ -58,11 +58,11 @@ const LoginPage = () => {
         </Link>
       </div>
       <div className="flex flex-col max-h-screen items-center justify-center pt-24">
-        <div className="flex items-center">
+        <div className="flex items-center w-1/2">
           <img src={PigPalLogo} alt="PigPal Logo" className="mr-8 w-full" />
           <div className="p-8 rounded-lg border-none mt-14">
-            <h2 className="text-2xl mb-4 text-light-pink font-outfit font-semibold">
-              Sign in
+            <h2 className="text-3xl mb-4 text-light-pink font-outfit font-semibold select-none">
+              Sign in 
             </h2>
             <form className="w-96" onSubmit={handleSubmit}>
               <div className="mb-4">
@@ -99,14 +99,14 @@ const LoginPage = () => {
               </div>
               <button
                 type="submit"
-                className="bg-light-pink text-off-white p-2.5 rounded-3xl w-1/2 ml-24 font-semibold hover:bg-mono-red"
+                className="bg-light-pink text-off-white p-2.5 rounded-3xl w-1/2 ml-24 font-semibold hover:bg-mono-red transition-all"
               >
                 Login
               </button>
             </form>
             <p className="mt-4 font-outfit font-semibold">
               Don't have an account yet?{" "}
-              <Link to="/signup" className="text-blue hover:text-darker-blue">
+              <Link to="/signup" className="text-light-blue hover:text-dark-blue">
                 Sign up here.
               </Link>
             </p>

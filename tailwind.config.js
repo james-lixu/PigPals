@@ -12,6 +12,7 @@ export default {
       'brown': '#975715',
       'blue': '#2C29BB',
       'dark-blue': '#1B1A54',
+      'light-blue': '#5D5BD1',
     },
     
     extend: {
