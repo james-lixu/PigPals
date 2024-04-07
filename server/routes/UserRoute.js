@@ -21,10 +21,10 @@ UserRoute.post("/register", async (req, res) => {
 
     const user = new Users({
       ...req.body,
-      password: hashedPassword,
+      passwordHash: hashedPassword,
     });
 
-    const savedUser = await Users.save();
+    const savedUser = await user.save()
     const userForResponse = { ...savedUser._doc };
     delete userForResponse.password;
     res.status(201).send({ user: userForResponse });
@@ -41,13 +41,12 @@ UserRoute.post("/login", async (req, res) => {
       return res.status(404).send("User not found.");
     }
 
-    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    const isMatch = await bcrypt.compare(req.body.password, user.passwordHash);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials." });
     }
 
     res.json({ message: "Login successful." });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "An error occurred." });
