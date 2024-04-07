@@ -5,7 +5,7 @@ import PigPalLogo from "../assets/pigpallogo.png";
 const SignupPage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -30,7 +30,7 @@ const SignupPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: user.name,
+          username: user.username,
           email: user.email,
           password: user.password,
         }),
@@ -61,7 +61,11 @@ const SignupPage = () => {
       </div>
       <div className="flex flex-col max-h-screen items-center justify-center pt-8">
         <div className="flex items-center w-1/2">
-          <img src={PigPalLogo} alt="PigPal Logo" className="mr-8 mt-16 w-full" />
+          <img
+            src={PigPalLogo}
+            alt="PigPal Logo"
+            className="mr-8 mt-16 w-full"
+          />
 
           <div className="p-8 rounded-lg border-none mt-14">
             <h2 className="text-3xl mb-4 text-light-pink font-outfit font-semibold select-none">
@@ -69,16 +73,16 @@ const SignupPage = () => {
             </h2>
             <form className="w-96" onSubmit={handleSubmit}>
               <label
-                htmlFor="name"
+                htmlFor="username"
                 className="block text-sm text-light-pink font-outfit font-semibold"
               >
                 Name
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={user.name}
+                id="username"
+                name="username" 
+                value={user.username}
                 onChange={handleChange}
                 className="mt-1 p-2 pl-4 w-full border border-light-pink rounded-3xl font-semibold focus:outline-light-pink mb-4"
               />
@@ -137,7 +141,10 @@ const SignupPage = () => {
             </form>
             <p className="mt-4 font-outfit font-semibold">
               Already have an account?{" "}
-              <Link to="/login" className="text-light-blue hover:text-dark-blue">
+              <Link
+                to="/login"
+                className="text-light-blue hover:text-dark-blue"
+              >
                 Sign in here.
               </Link>
             </p>
